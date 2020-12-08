@@ -9,11 +9,11 @@ function getNasaApi() {
         // console.log(data)
         const { date, explanation, title, url } = data; 
         displaImgAndInfo.querySelector('img').src = `${url}`;
-        // displaImgAndInfo.querySelector('h2').textContent = `${title}`;
-        // displaImgAndInfo.querySelector('label').textContent = `${date}`;
-        // displaImgAndInfo.querySelector('p').textContent = `${explanation}`;
+        displaImgAndInfo.querySelector('h2').textContent = `${title}`;
+        displaImgAndInfo.querySelector('label').textContent = `${date}`;
+        displaImgAndInfo.querySelector('p').textContent = `${explanation}`;
         
-        // popupImage(displaImgAndInfo, url);
+        popupImage(displaImgAndInfo, url);
     })
     .catch(err => console.log(err));
     
@@ -25,10 +25,14 @@ getNasaApi();
 // Pop up when image is click
 
 function popupImage(displaImgAndInfo, url) {
-
+    const popupImage = document.querySelector('#popup');
     const image = displaImgAndInfo.querySelector('img');
     image.addEventListener('click', () => {
-        console.log('click')
+        popupImage.style.display = 'flex';
+        popupImage.querySelector('img').src = `${url}`; 
     })
-
+    // Close popup
+    popupImage.addEventListener('click', () => {
+        popupImage.style.display = 'none';
+    })
 }
